@@ -42,7 +42,7 @@ Example Playbook
 - name: periodicly clean up unused containers
   hosts: all
   roles:
-    - role: container-image-cleanup
+    - role: container_image_cleanup
       vars:
         podman_prune_cronjob_special_time: daily
         docker_prune_cronjob_special_time: weekly
