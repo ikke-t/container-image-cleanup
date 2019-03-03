@@ -23,15 +23,13 @@
 - name: ensure periodic task to cleanup unused docker containers
   cron:
     name: "prune all docker images"
-    minute: "12"
-    hour: "2"
+    special_time: "{{ docker_prune_cronjob_special_time }}"
     job: "{{ docker_path }} image prune {{ docker_prune_opts }} > /dev/null"
     state: "{{ docker_present|default('absent') }}"
 
 - name: ensure periodic task to cleanup unused podman containers
   cron:
     name: "prune all podman images"
-    minute: "14"
-    hour: "2"
+    special_time: "{{ podman_prune_cronjob_special_time }}"
     job: "{{ podman_path }} system prune {{ podman_prune_opts }} > /dev/null"
     state: "{{ podman_present|default('absent') }}"
