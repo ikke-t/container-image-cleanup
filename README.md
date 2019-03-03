@@ -1,7 +1,8 @@
-Container Cleanup
-=================
+Container Image Cleanup
+=======================
 
-Cleans up all unused container images from host. Role sets up cron job based on if podman or docker is installed.
+Periodicly cleans up all unused container images from host. Role sets up cron
+job based on whether podman or docker is installed.
 
 Requirements
 ------------
@@ -41,7 +42,7 @@ Example Playbook
 - name: periodicly clean up unused containers
   hosts: all
   roles:
-    - role: container-cleanup
+    - role: container-image-cleanup
       vars:
         podman_prune_cronjob_special_time: daily
         docker_prune_cronjob_special_time: weekly

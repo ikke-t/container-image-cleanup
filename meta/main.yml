@@ -1,6 +1,5 @@
 galaxy_info:
   author: Ilkka Tengvall
-  description:
   company: ITSE
   license: GPLv3
 
@@ -14,6 +13,9 @@ galaxy_info:
     versions:
     - all
 
-  galaxy_tags: [containers]
+  galaxy_tags:
+  - containers
+  - podman
+  - docker
 
 dependencies: []
