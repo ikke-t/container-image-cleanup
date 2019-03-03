@@ -1,0 +1,12 @@
+---
+
+podman_prune_opts: "--all --force"
+docker_prune_opts: "--all --force"
+
+podman_path: /usr/bin/podman
+docker_path: /usr/bin/docker
+
+podman_minute: 15
+podman_hour: 2
+docker_minute: 20
+docker_hour: 2

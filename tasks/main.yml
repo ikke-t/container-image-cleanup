@@ -1,0 +1,37 @@
+---
+
+- name: check if podman is installed
+  stat:
+    path: "{{ podman_path }}"
+  register: podman_binary
+
+- name: mark podman being present
+  set_fact:
+    podman_present: present
+  when: podman_binary.stat.exists
+
+- name: check if docker is installed
+  stat:
+    path: "{{ docker_path }}"
+  register: docker_binary
+
+- name: mark docker being present
+  set_fact:
+    docker_present: present
+  when: docker_binary.stat.exists
+
+- name: ensure periodic task to cleanup unused docker containers
+  cron:
+    name: "prune all docker images"
+    minute: "12"
+    hour: "2"
+    job: "{{ docker_path }} image prune {{ docker_prune_opts }} > /dev/null"
+    state: "{{ docker_present|default('absent') }}"
+
+- name: ensure periodic task to cleanup unused podman containers
+  cron:
+    name: "prune all podman images"
+    minute: "14"
+    hour: "2"
+    job: "{{ podman_path }} system prune {{ podman_prune_opts }} > /dev/null"
+    state: "{{ podman_present|default('absent') }}"
