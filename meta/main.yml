@@ -1,4 +1,5 @@
 galaxy_info:
+  description: Periodicly cleans up all unused container images from host. Role sets up cron job based on whether podman or docker is installed.
   author: Ilkka Tengvall
   company: ITSE
   license: GPLv3
@@ -7,9 +8,6 @@ galaxy_info:
 
   platforms:
   - name: Fedora
-    versions:
-    - all
-  - name: RHEL
     versions:
     - all
 
